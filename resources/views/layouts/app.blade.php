@@ -24,8 +24,8 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
                  
-                   <a class="navbar-brand" href="{{route('operations.index')}}">View Employes List</a>
-                   <a class="navbar-brand" href="{{route('operations.create')}}">Add  Employes and company</a>
+                   <a class="navbar-brand" href="{{route('employee.index')}}">View Employes List</a>
+                <a class="navbar-brand" href="{{route('company.index')}}">Companies</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

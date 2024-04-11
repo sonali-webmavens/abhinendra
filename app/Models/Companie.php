@@ -11,7 +11,7 @@ class Companie extends Model
     protected $fillable = [
         'name', 'email', 'logo','website',
     ];
-          public function company(){
+          public function employee(){
 
           return $this->hasOne('App\Models\Employee');
     }

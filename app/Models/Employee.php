@@ -15,7 +15,7 @@ class Employee extends Model
     ];
  
 
-   public function employee(){
+   public function company(){
 
       return $this->belongsTo(Company::class);
  }

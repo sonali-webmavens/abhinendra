@@ -11,7 +11,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('operations','App\Http\Controllers\EmployeeController')->middleware('auth');
+Route::resource('employee','App\Http\Controllers\EmployeeController')->middleware('auth');
+
+Route::resource('company','App\Http\Controllers\CompanyController')->middleware('auth');
 
 Route::fallback(function(){
 
