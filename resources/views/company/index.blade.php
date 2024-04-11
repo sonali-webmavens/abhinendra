@@ -34,7 +34,7 @@
       <form action="{{route('company.destroy',$companydetails->id)}}" method="POST">
        @csrf
        @method('DELETE')
-       <button style="text-decoration: none; color:white; font-size: 20px; padding: 4px; background: red; border-radius: 8px" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+       <button style="text-decoration: none; color:white; font-size: 18px; padding: 4px; background: red; border-radius: 8px; border:none;"  type="submit" onclick="return confirm('Are you sure?')">Delete</button>
       </form>
     </th>
      </tr>

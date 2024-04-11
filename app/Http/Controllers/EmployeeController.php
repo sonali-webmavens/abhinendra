@@ -11,12 +11,13 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-     $employee=Employee::paginate(10);
+     $companyandemployeedeatils=Companie::has('employee')->paginate(2);
      $employeeCountRows=Employee::count();
      $companyCountRows=Companie::count();
-     return view('employee.index',compact('employee','employeeCountRows','companyCountRows'));
+     return view('employee.index',compact('employeeCountRows','companyCountRows','companyandemployeedeatils'));
     }
 
     /**
@@ -35,7 +36,7 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
   {
-      Employee::create([
+       Employee::create([
       'firstname'=>$request->employeename,
       'lastname'=>$request->employeelastname,
       'companie_id'=>$request->companyname,
@@ -59,13 +60,14 @@ class EmployeeController extends Controller
       $employee=Employee::find($id);
       $employeeCountRows=Employee::count();
       $company=Companie::all();
-      return view('employee.edit', compact('employee','employeeCountRows','company'));
+      $companyname=Companie::where('id',$employee->companie_id)->first();
+      return view('employee.edit', compact('employee','employeeCountRows','company','companyname'));
     }
 
     public function update(EmployeeRequest $request, $id)
     {
-        $employee=Employee::find($id);
-        $employee->update([
+         $employee=Employee::find($id);
+         $employee->update([
         'firstname'=>$request->employeename,
         'lastname'=>$request->employeelastname,
         'companie_id'=>$request->companyname,

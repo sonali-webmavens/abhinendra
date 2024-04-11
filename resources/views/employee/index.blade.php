@@ -13,6 +13,7 @@
 @if($employeeCountRows==0)
 <div class="text-center"><h2>Sorry but now not any employees list here.</h2></div>  
 @else 
+<mian style="overflow: scroll;">
 <table class="table container my-4 " id="myTable">
   <thead>
     <tr>
@@ -21,35 +22,47 @@
       <th scope="col">Employee Last_name</th>
       <th scope="col">Employee Email</th>
       <th scope="col">Employee Phone</th>
+      <th>Company name</th>
+      <th>Company email</th>
+      <th>Company logo</th>
+      <th>Company Website</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
 <tr>
-    @foreach($employee as $employes)
+    @foreach($companyandemployeedeatils as $company)
+    @foreach($company->employee as $employes)
     <tr>
       <th scope="col">{{$sno++}}</th>
-      <th scope="col">{{$employes->firstname}}</th>
-      <th scope="col">{{$employes->lastname}}</th>
-      <th scope="col">{{$employes->email}}</th>
-      <th scope="col">{{$employes->phone}}</th>
+      <th scope="col">{{$employes->firstname??'not find'}}</th>
+      <th scope="col">{{$employes->lastname ??'not find'}}</th>
+      <th scope="col">{{$employes->email ??'not find'}}</th>
+      <th scope="col">{{$employes->phone ??'not find'}}</th>
+      <th scope="col">{{$company->name}}</th>
+      <th scope="col">{{$company->email}}</th>
+      <th scope="col">
+        <img src="{{asset('storage/app/'.$company->logo)}}">
+      </th>
+      <th scope="col">{{$company->website}}</th>
       <th>
-         <a style="text-decoration: none; color:white; font-size: 20px; padding: 6px; background: blue; border-radius: 8px" href="{{route('employee.edit', $employes->id)}}">Edit</a>
+         <a style="text-decoration: none; color:white; font-size: 20px; padding: 6px; background: blue; border-radius: 8px" href="{{ route('employee.edit',$employes->id??'not found') }}">Edit</a>
       </th>
       <th>
-        <form action="{{route('employee.destroy', $employes->id)}}" method="POST">
+        <form action="{{route('employee.destroy', $employes->id ??'not found')}}" method="POST">
           @csrf
           @method('DELETE')
-          <button style="text-decoration: none; color:white; font-size: 20px; padding: 4px; background: red; border-radius: 8px" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+          <button style="text-decoration: none; color:white; font-size: 18px; padding: 4px; background: red; border-radius: 8px; border:none;" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
         </form>
       </th>
      </tr>
+     @endforeach
       @endforeach
   </tbody>
 </table>
+</main>
 <div class="pagination justify-content-center">
-   {{$employee->links("pagination::bootstrap-5")}}
+   {{$companyandemployeedeatils->links("pagination::bootstrap-5")}}
 </div>
 @endif
-@endsection
-
+ @endsection

@@ -12,7 +12,23 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <style type="text/css">
+        ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        }
 
+ 
+        ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px; 
+        }
+
+ 
+        ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+         }
+
+    </style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>

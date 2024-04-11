@@ -26,6 +26,7 @@
   <div class="form-group">
     <label for="exampleInputEmail1">Company name</label>
     <select name="companyname" class="form-control">
+      <option value="{{$employee->companie_id}}">{{$companyname->name}}</option>
       @foreach($company as $companyvalue)
       <option value="{{$companyvalue->id}}">
         {{$companyvalue->name}}
