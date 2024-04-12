@@ -30,11 +30,15 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
 
-        $path=$request->file('companylogo')->store('app/public', 'public');
+        //$path=$request->file('companylogo')->store('app/public', 'public');
+        $logoName =$request->file('companylogo');
+        $extension=$logoName->getClientOriginalExtension();
+        $filename=time().".".$extension;
+        $logoName->move('app/public/',$filename);  
         Companie::create([
         'name'=>$request->companyname,
         'email'=>$request->companyemail,
-        'logo'=>$path,
+        'logo'=>'app/public/'.$filename,
         'website'=>$request->companywebsite
         ]);
         return redirect()->route('company.index');
@@ -62,15 +66,18 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request,$id)
     {
-        $path=$request->file('companylogo')->store('app/public', 'public');
+        //$path=$request->file('companylogo')->store('app/public', 'public');
+        $logoName =$request->file('companylogo');
+        $extension=$logoName->getClientOriginalExtension();
+        $filename=time().".".$extension;
+        $logoName->move('app/public/',$filename);  
         $company=Companie::find($id);
         $company->update([
         'name'=>$request->companyname,
         'email'=>$request->companyemail,
-        'logo'=>$path,
+        'logo'=>'app/public/'.$filename,
         'website'=>$request->companywebsite
         ]);
-
         return redirect()->route('company.index');
     }
 

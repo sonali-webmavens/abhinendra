@@ -17,7 +17,7 @@ Route::resource('company','App\Http\Controllers\CompanyController')->middleware(
 
 Route::fallback(function(){
 
-    return "Sorry page not found";
+    return view('notfound');
 });
 
 
