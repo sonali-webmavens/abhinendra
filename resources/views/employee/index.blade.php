@@ -31,20 +31,19 @@
   </thead>
   <tbody>
 <tr>
-    @foreach($companyandemployeedeatils as $company)
-    @foreach($company->employee as $employes)
+    @foreach($companyandemployeedeatils as $employes)
     <tr>
       <th scope="col">{{$sno++}}</th>
       <th scope="col">{{$employes->firstname??'not find'}}</th>
       <th scope="col">{{$employes->lastname ??'not find'}}</th>
       <th scope="col">{{$employes->email ??'not find'}}</th>
       <th scope="col">{{$employes->phone ??'not find'}}</th>
-      <th scope="col">{{$company->name}}</th>
-      <th scope="col">{{$company->email}}</th>
-      <th scope="col">
-        <img style="width: 200px; height: 100px; border:1px solid lightgreen; border-radius:8px;" src="{{Storage::url('public/'.$company->logo)}}">
+      <th scope="col">{{$employes->company->name??'not find'}}</th>
+      <th scope="col">{{$employes->company->email??'not find'}}</th>
+     <th scope="col">
+     <img style="width: 200px; height: 100px; border:1px solid lightgreen; border-radius:8px;" src="{{Storage::url('public/'.$employes->company->logo?? 'not found')}}">
       </th>
-      <th scope="col">{{$company->website}}</th>
+      <th scope="col">{{$employes->company->website??'not find'}}</th>
       <th>
          <a style="text-decoration: none; color:white; font-size: 20px; padding: 6px; background: blue; border-radius: 8px" href="{{ route('employee.edit',$employes->id??'not found') }}">Edit</a>
       </th>
@@ -56,7 +55,6 @@
         </form>
       </th>
      </tr>
-     @endforeach
      @endforeach
   </tbody>
 </table>
