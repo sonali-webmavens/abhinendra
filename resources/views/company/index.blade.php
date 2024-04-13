@@ -24,7 +24,7 @@
       <th scope="col">{{$companydetails->name}}</th>
       <th scope="col">{{$companydetails->email}}</th>
       <th scope="col">
-        <img style="width: 200px; height: 100px; border:1px solid lightgreen; border-radius:8px;" src="{{url($companydetails->logo)}}">
+        <img style="width: 200px; height: 100px; border:1px solid lightgreen; border-radius:8px;" src="{{Storage::url('public/'.$companydetails->logo)}}">
       </th>
       <th scope="col">{{$companydetails->website}}</th>
       <th>
