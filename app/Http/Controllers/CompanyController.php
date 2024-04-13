@@ -12,8 +12,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company=Companie::paginate(10);
-        return view('company.index',compact('company'));
+    $company=Companie::paginate(10);
+    return view('company.index',compact('company'));
     }
 
     /**
@@ -21,7 +21,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+    return view('company.create');
     }
 
     /**
@@ -30,19 +30,19 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
 
-        if($request->hasFile('companylogo')){
-        $file=$request->file('companylogo');
-        $filename='yt-'.time().rand().'.'.$file->getClientOriginalExtension();
-        $path=$file->storeAs('public',$filename);
-        $imagename=$filename;
+    if($request->hasFile('companylogo')){
+    $file=$request->file('companylogo');
+    $filename='yt-'.time().rand().'.'.$file->getClientOriginalExtension();
+    $path=$file->storeAs('public',$filename);
+    $imagename=$filename;
     }
-        Companie::create([
-        'name'=>$request->companyname,
-        'email'=>$request->companyemail,
-        'logo'=>$imagename,
-        'website'=>$request->companywebsite
+    Companie::create([
+    'name'=>$request->companyname,
+    'email'=>$request->companyemail,
+    'logo'=>$imagename,
+    'website'=>$request->companywebsite
         ]);
-        return redirect()->route('company.index');
+    return redirect()->route('company.index');
     }
 
     /**
@@ -58,8 +58,8 @@ class CompanyController extends Controller
      */
     public function edit(string $id)
     {
-        $companyedit=Companie::find($id);
-        return view('company.edit',compact('companyedit'));
+    $companyedit=Companie::find($id);
+    return view('company.edit',compact('companyedit'));
     }
 
     /**
@@ -67,24 +67,24 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request,$id)
     {
-        if($request->hasFile('companylogo')){
-        $file=$request->file('companylogo');
-        $filename='yt-'.time().rand().'.'.$file->getClientOriginalExtension();
+    if($request->hasFile('companylogo')){
+    $file=$request->file('companylogo');
+    $filename='yt-'.time().rand().'.'.$file->getClientOriginalExtension();
         $path=$file->storeAs('public',$filename);
         $imagename=$filename;
     }
-        $logoName =$request->file('companylogo');
-        $extension=$logoName->getClientOriginalExtension();
-        $filename=time().".".$extension;
-        $logoName->move('app/public/',$filename);  
-        $company=Companie::find($id);
-        $company->update([
-        'name'=>$request->companyname,
-        'email'=>$request->companyemail,
-        'logo'=>$imagename,
-        'website'=>$request->companywebsite
+    $logoName =$request->file('companylogo');
+    $extension=$logoName->getClientOriginalExtension();
+    $filename=time().".".$extension;
+    $logoName->move('app/public/',$filename);  
+    $company=Companie::find($id);
+    $company->update([
+    'name'=>$request->companyname,
+    'email'=>$request->companyemail,
+    'logo'=>$imagename,
+    'website'=>$request->companywebsite
         ]);
-        return redirect()->route('company.index');
+    return redirect()->route('company.index');
     }
 
     /**
@@ -92,8 +92,8 @@ class CompanyController extends Controller
      */
     public function destroy(string $id)
     {
-        $company=Companie::find($id);
-        $company->delete();
-        return redirect()->route('company.index');
+    $company=Companie::find($id);
+    $company->delete();
+    return redirect()->route('company.index');
     }
 }

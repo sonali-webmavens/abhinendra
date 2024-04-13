@@ -25,9 +25,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-       $company=Companie::all();
-       $companyCountRows=Companie::count();
-       return view('employee.create',compact('company','companyCountRows')); 
+     $company=Companie::all();
+     $companyCountRows=Companie::count();
+     return view('employee.create',compact('company','companyCountRows')); 
        
     }
 
@@ -36,14 +36,14 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
   {
-       Employee::create([
-      'firstname'=>$request->employeename,
-      'lastname'=>$request->employeelastname,
-      'companie_id'=>$request->companyname,
-      'email'=>$request->employeeemail,
-      'phone'=>$request->phonenumber
+   Employee::create([
+   'firstname'=>$request->employeename,
+   'lastname'=>$request->employeelastname,
+   'companie_id'=>$request->companyname,
+   'email'=>$request->employeeemail,
+   'phone'=>$request->phonenumber
       ]);
-      return redirect()->route('employee.index');    
+    return redirect()->route('employee.index');    
 
     } 
 
@@ -57,32 +57,32 @@ class EmployeeController extends Controller
     
     public function edit($id)
     {
-      $employee=Employee::find($id);
-      $employeeCountRows=Employee::count();
-      $company=Companie::all();
-      $companyname=Companie::where('id',$employee->companie_id)->first();
-      return view('employee.edit', compact('employee','employeeCountRows','company','companyname'));
+    $employee=Employee::find($id);
+    $employeeCountRows=Employee::count();
+    $company=Companie::all();
+    $companyname=Companie::where('id',$employee->companie_id)->first();
+    return view('employee.edit', compact('employee','employeeCountRows','company','companyname'));
     }
 
     public function update(EmployeeRequest $request, $id)
     {
-         $employee=Employee::find($id);
-         $employee->update([
-        'firstname'=>$request->employeename,
-        'lastname'=>$request->employeelastname,
-        'companie_id'=>$request->companyname,
-        'email'=>$request->employeeemail,
-        'phone'=>$request->phonenumber
+    $employee=Employee::find($id);
+    $employee->update([
+    'firstname'=>$request->employeename,
+    'lastname'=>$request->employeelastname,
+    'companie_id'=>$request->companyname,
+    'email'=>$request->employeeemail,
+    'phone'=>$request->phonenumber
        ]);
-         return redirect()->route('employee.index'); 
+    return redirect()->route('employee.index'); 
     }
 
   
     public function destroy($id)
     {
-       $employee=Employee::find($id);
-       $employee->delete();
-       return redirect()->route('employee.index');
+    $employee=Employee::find($id);
+    $employee->delete();
+    return redirect()->route('employee.index');
        
     }
 }
