@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('min')
+<div style="min-height: 20vh;"></div>
+@endsection
 @section('table')
    <div class="container my-4">
   <a style="text-decoration: none; color:white; font-size:20px; font-weight: 800; cursor: pointer; background:blueviolet; padding:6px; border-radius:4px; boredr:2px solid lightgreen;" href="{{route('company.create')}}">Add a New Company</a>
@@ -12,6 +15,7 @@
       <th scope="col">Company logo</th>
       <th scope="col">Company website</th>
       <th>Actions</th>
+      <th style="display: none;">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -46,6 +50,18 @@
 <div class="pagination justify-content-center">
    {{$company->links("pagination::bootstrap-5")}}
 </div>
+@push('css')
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
+@endpush
+@push('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#myTable").DataTable();
+  })
+</script>
+@endpush
 @endsection
 
 

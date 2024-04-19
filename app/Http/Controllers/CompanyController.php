@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\CompanyRequest;
 use App\Models\Companie;
+use App\Notifications\NewCompanyNotification;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -11,7 +12,7 @@ class CompanyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {    
     $company=Companie::orderBy('id','desc')->paginate(10);
     return view('company.index',compact('company'));
     }
@@ -36,13 +37,15 @@ class CompanyController extends Controller
     $path=$file->storeAs('public',$filename);
     $imagename=$filename;
     }
-    Companie::create([
+    $company=Companie::create([
     'name'=>$request->companyname,
     'email'=>$request->companyemail,
     'logo'=>$imagename,
     'website'=>$request->companywebsite
         ]);
-    return redirect()->route('company.index');
+    \Notification::route('mail','abhinendra@webmavens.com') 
+            ->notify(new NewCompanyNotification($company));
+     return redirect()->route('company.index');
     }
 
     /**
@@ -50,7 +53,8 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        //
+     $showcomapny=Companie::findOrFail($id);
+     return view('company.show',compact('showcomapny'));
     }
 
     /**

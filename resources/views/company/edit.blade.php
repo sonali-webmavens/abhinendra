@@ -23,9 +23,14 @@
     <label for="exampleInputEmail1">Company logo</label>
     <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="companylogo" value="{{ $companyedit->logo}}" required>
 </div>
+<br>
+  <img style="width: 200px; height: 100px; border:1px solid lightgreen; border-radius:8px;" src="{{Storage::url('public/'.$companyedit->logo)}}">
+<br>
+<br>
   @error('companylogo')
         <span style="max-height:max-content; max-width:max-content; padding: 2px;" class="alert alert-danger close">{{ $message }}</span>
     @enderror
+
  
  <div class="form-group">
     <label for="exampleInputEmail1">Company website</label>
@@ -47,5 +52,9 @@
 }, 6000);
 </script>
 @endsection
+
+
+
+
 
 

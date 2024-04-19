@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('min')
+<div style="min-height: 40vh;"></div>
+@endsection
 @section('table')
 @if($employeeCountRows==0)
 <div class="container text-center">
