@@ -60,6 +60,7 @@ class Display extends Component
     $worker->update([
     'phoneNumber'=>$this->phoneNumber,
     ]);
-    return redirect()->route('workers')->with('message', 'Worker Updated Successfully!');
+    $this->reset();
+    session()->flash('message', 'Worker Updated Successfully!.');
     }
 }

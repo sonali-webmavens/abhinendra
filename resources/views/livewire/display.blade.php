@@ -32,7 +32,6 @@
         <div class="container" style="position:relative;">
          <form wire:submit.prevent="updatephone({{$id}})" class="updatephone-form" style=" opacity: 0; display: none; ">
         <div class="form-group">
-        <label for="exampleInputEmail1" style="background: black; color: white;">PhoneNumber</label>
         <input type="text" wire:model="phoneNumber" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="width: 16vw;">
         @error('phoneNumber')
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -113,11 +112,10 @@ Array.from(edit).forEach(element => {
     let phoneNumber=element.parentNode.parentNode;
     let td=phoneNumber.getElementsByTagName('td')[3];
     let raelPosition=td.querySelector('.container');
-    raelPosition.style.background="black";
     raelPosition.style.padding="12px";
     let rect = raelPosition.getBoundingClientRect();
        let topPercent = (rect.top / window.innerHeight) * -2;
-       let leftPercent = (rect.left / window.innerWidth) * -600;
+       let leftPercent = (rect.left / window.innerWidth) * -700;
       function setTimeToShow() {
             let form=element.parentNode.parentNode;
             let realForm=form.getElementsByTagName('td')[3];
@@ -134,10 +132,17 @@ Array.from(edit).forEach(element => {
         setTimeout(function() {
             clearInterval(intervalId);
             document.querySelectorAll('.updatephone-form').style.opacity = 0;
-        }, 6000);
+        }, 20000);
     });
 });
 
-
+//When submit phoneNubmer Update Form;
+ let updatephoneForm=document.querySelectorAll('.updatephone-form');
+    Array.from(updatephoneForm).forEach(phoneUpdate=>{
+        phoneUpdate.addEventListener('submit',()=>{
+        phoneUpdate.style.opacity=0;
+        clearInterval(intervalId);
+        });
+    })
 </script>
 </div>
