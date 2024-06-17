@@ -12,7 +12,10 @@ class Display extends Component
     public $phoneNumber;
     public $check=true;
     public $singleWorker;
- 
+
+    protected $rules = [
+        'phoneNumber' =>['required', 'regex:/^[0-9]{10}$/'],
+    ];
    public function render()
     {   
         $this->allWorkers=Worker::orderBy('id','desc')->get();
@@ -51,5 +54,12 @@ class Display extends Component
             $this->singleWorker = null;
         }
     }
-    
+   public function updatephone($id){
+    $this->validate();
+    $worker=Worker::find($id);
+    $worker->update([
+    'phoneNumber'=>$this->phoneNumber,
+    ]);
+    return redirect()->route('workers')->with('message', 'Worker Updated Successfully!');
+    }
 }
