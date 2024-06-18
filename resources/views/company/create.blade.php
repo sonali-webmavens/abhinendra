@@ -1,6 +1,7 @@
 
 @extends('layouts.app')
 @section('table')
+ <link rel="stylesheet" href="dist/css/adminlte.min.css">
 <div class="container">
 </div>
 <div class="container">

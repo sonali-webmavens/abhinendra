@@ -24,6 +24,18 @@ Route::get('/workers', function(){
 return view('workers.home');
 })->name('workers');
 
+$altLangs = config('app.alt_langs', []);
+if (in_array(request()->segment(1), $altLangs)) {
+    app()->setLocale(request()->segment(1));
+    config(['app.locale_prefix' => request()->segment(1)]);
+}
+
+Route::group(['prefix' => config('app.locale_prefix')], function () {
+Route::get('/home/{lang}', function ($lang) {
+       app()->setLocale($lang);
+       return view('home',['lang'=>$lang]);
+    })->name('language');
+});
 
 Route::get('/create',function(){
 return view('workers.create');
