@@ -20,4 +20,15 @@ Route::fallback(function(){
     return view('notfound');
 });
 
+
 Route::resource('Factory',FactoryController::class);
+
+Route::get('/workers', function(){
+return view('workers.home');
+})->name('workers');
+
+
+Route::get('/create',function(){
+return view('workers.create');
+})->name('create');
+
