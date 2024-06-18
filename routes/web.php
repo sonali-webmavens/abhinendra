@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FactoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,5 +20,4 @@ Route::fallback(function(){
     return view('notfound');
 });
 
-
-
+Route::resource('Factory',FactoryController::class);
