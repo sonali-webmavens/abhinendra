@@ -26,6 +26,9 @@ class FactoryController extends Controller
     public function store(FactoryCreateRequest $request)
     {
        $factorycreate=Factory::create($request->all());
+       if ($request->hasFile('images')) {
+        $factorycreate->addMediaFromRequest('images')->toMediaCollection('images');
+       }
        if($factorycreate){
           CreateFactoryJob::dispatch($factorycreate);
           return redirect()->route('Factory.index')->with('message','New Factory Created Successfully!.');
@@ -56,6 +59,10 @@ class FactoryController extends Controller
        $FactoryUpadte=Factory::find($id);
        if($FactoryUpadte){
           $FactoryUpadte->update($request->all());
+       if ($request->hasFile('images')) {
+           $FactoryUpadte->clearMediaCollection('images');
+           $FactoryUpadte->addMediaFromRequest('images')->toMediaCollection('images');
+        }
           return redirect()->route('Factory.index')->with('message','Factory Updated Successfully!.');
        }
        else{

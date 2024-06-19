@@ -37,6 +37,7 @@ class FactoryUpadteRequest extends FormRequest
          ],
          'phoneNumber'=>['required', 'regex:/^[0-9]{10}$/'],
          'website'=>'required|url',
+         'images' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
         session()->forget('update_id');
     }

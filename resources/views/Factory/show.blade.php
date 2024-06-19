@@ -18,6 +18,7 @@
       <th scope="col">Factory_email</th>
       <th scope="col">Factory_phoneNumber</th>
       <th scope="col">Factory_website</th>
+      <th scope="col">Logo</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,9 @@
       <td>{{$factory->email}}</td>
       <td>{{$factory->phoneNumber}}</td>
       <td>{{$factory->website}}</td>
+      <td>
+          <img width="100" src="{{$factory->getFirstMediaUrl('images','thumb')}}" alt="logo">
+      </td>
     </tr>
   </tbody>
 </table>

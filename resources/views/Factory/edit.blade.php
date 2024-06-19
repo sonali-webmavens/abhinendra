@@ -9,7 +9,7 @@
 <div class="my-4">
 	<a class="btn btn-sm btn-success" href="{{route('Factory.index')}}">Back to List</a>
 </div>
-<form action="{{route('Factory.update',$factory->id)}}" method="post">
+<form action="{{route('Factory.update',$factory->id)}}" method="post" enctype="multipart/form-data">
  @csrf
  @method('PUT')
   <div class="form-group">
@@ -39,6 +39,16 @@
     @error('website')
     <span class="alert alert-danger" role="alert">{{$message}}</span>
     @enderror
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Company_logo</label>
+    <input type="file" name="images" value="{{$factory->getFirstMediaUrl('images')}}" class="form-control" accept=".jpeg,.png,.jpg,.gif">
+    @error('images')
+    <span class="alert alert-danger" role="alert">{{$message}}</span>
+    @enderror
+  </div>
+  <div class="form-group">
+    <img width="100" src="{{$factory->getFirstMediaUrl('images','thumb')}}">
   </div>
   <button type="submit" class="btn btn-success">Submit</button>
 </form>

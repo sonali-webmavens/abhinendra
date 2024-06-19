@@ -18,6 +18,7 @@
       <th scope="col">Factory_email</th>
       <th scope="col">Factory_phoneNumber</th>
       <th scope="col">Factory_website</th>
+      <th scope="col">Logo</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -29,6 +30,9 @@
       <td>{{$item->email}}</td>
       <td>{{$item->phoneNumber}}</td>
       <td>{{$item->website}}</td>
+      <td>
+        <img width="100" src="{{$item->getFirstMediaUrl('images','thumb')}}">
+      </td>
       <td style="display: flex;">
         <a style="margin: 0 6px" class="btn btn-sm btn-success" href="{{route('Factory.show',$item->id)}}">View</a>
         <a style="margin: 0 6px" class="btn btn-sm btn-success" href="{{route('Factory.edit',$item->id)}}">Edit</a>

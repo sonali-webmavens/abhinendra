@@ -9,7 +9,7 @@
 <div class="my-4">
 	<a class="btn btn-sm btn-success" href="{{route('Factory.index')}}">Back to List</a>
 </div>
-<form action="{{route('Factory.store')}}" method="post">
+<form action="{{route('Factory.store')}}" method="post" enctype="multipart/form-data">
  @csrf
  @method('POST')
   <div class="form-group">
@@ -37,6 +37,13 @@
     <label for="exampleInputEmail1">Website</label>
     <input type="url" name="website" value="{{old('website')}}" class="form-control" required placeholder="Enter website url">
     @error('website')
+    <span class="alert alert-danger" role="alert">{{$message}}</span>
+    @enderror
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Company_logo</label>
+    <input type="file" name="images" value="{{old('images')}}" class="form-control" accept=".jpeg,.png,.jpg,.gif">
+    @error('images')
     <span class="alert alert-danger" role="alert">{{$message}}</span>
     @enderror
   </div>
