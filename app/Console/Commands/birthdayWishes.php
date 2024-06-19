@@ -26,10 +26,15 @@ class birthdayWishes extends Command
      */
     public function handle()
     {
+           $currentDateTime = now('America/Chicago');
+           if ($currentDateTime->hour == 5 && $currentDateTime->minute == 0) {
             Mail::raw("Happy Birthday, Abhinendra!", function ($message){
                 $message->to('abhinendra@webmavens.com')
                         ->subject('Happy Birthday!');
             });
             $this->info("Birthday wishes sent to: abhinendra@webmavens.com");
+        } else {
+            $this->info("No birthday wishes sent. Current time is not 5 AM CST.");
+        }
     }
 }
