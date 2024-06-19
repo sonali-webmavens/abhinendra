@@ -27,6 +27,7 @@ class FactoryCreateRequest extends FormRequest
          'email'=>'required|email|max:100|unique:factories,email',
          'phoneNumber'=>['required', 'regex:/^[0-9]{10}$/'],
          'website'=>'required|url',
+         'images' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }
