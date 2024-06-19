@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactoryController;
-
+use App\Http\Controllers\SeederFactoryController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,3 +32,8 @@ Route::get('/create',function(){
 return view('workers.create');
 })->name('create');
 
+Route::get('/fakefactory',[SeederFactoryController::class,'factory'])->name('factory');
+
+Route::get('/fakeseeder',[SeederFactoryController::class,'seeder'])->name('seeder');
+
+Route::get('/sendmail',[SeederFactoryController::class,'sendmail'])->name('sendmail');
