@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\SeederFactoryController;
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -14,6 +17,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('employee','App\Http\Controllers\EmployeeController')->middleware('auth');
 
 Route::resource('company','App\Http\Controllers\CompanyController')->middleware('auth');
+
+// ROUTE FOR EXPORTING COMPANIES 
+Route::get('/export/companies/{format}', [CompanyController::class, 'export'])->name('export.companies')->middleware('auth');
+
 
 Route::fallback(function(){
 
@@ -37,3 +44,4 @@ Route::get('/fakefactory',[SeederFactoryController::class,'factory'])->name('fac
 Route::get('/fakeseeder',[SeederFactoryController::class,'seeder'])->name('seeder');
 
 Route::get('/sendmail',[SeederFactoryController::class,'sendmail'])->name('sendmail');
+
