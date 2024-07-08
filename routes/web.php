@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\SeederFactoryController;
+use App\Http\Controllers\ExportController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,3 +38,7 @@ Route::get('/fakefactory',[SeederFactoryController::class,'factory'])->name('fac
 Route::get('/fakeseeder',[SeederFactoryController::class,'seeder'])->name('seeder');
 
 Route::get('/sendmail',[SeederFactoryController::class,'sendmail'])->name('sendmail');
+
+Route::get('/exportdata',[ExportController::class,'index'])->name('exportdata');
+Route::get('/exportnewcompany', [ExportController::class, 'export'])->name('exports');
+Route::get('/csvEXport', [ExportController::class,'csvEXport'])->name('csvEXport');
